@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: react-demo
+  name: react-demo-cust-2
   namespace: argocd
 spec:
   project: default
