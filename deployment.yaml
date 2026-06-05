@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: react-app
-          image: ghcr.io/jainnpiy/my-react-app:latest  # CI will update this
+          image: ghcr.io/jainnpiy/demo:latest  # CI will update this
           ports:
             - containerPort: 80
           imagePullPolicy: Always
