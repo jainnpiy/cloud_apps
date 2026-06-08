@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: customers-project
+  namespace: argocd
+spec:
+  description: Project for all customer deployments
+
+  # Only allow apps to pull from this repo
+  sourceRepos:
+    - https://github.com/jainnpiy/cloud_apps
+
+  # Allow deploying to these namespaces
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: demo         # existing customer
+    - server: https://kubernetes.default.svc
+      namespace: customer-a
+    - server: https://kubernetes.default.svc
+      namespace: customer-b
+    - server: https://kubernetes.default.svc
+      namespace: customer-c
+    - server: https://kubernetes.default.svc
+      namespace: argocd       # needed for parent app to create child apps
+
+  # What Kubernetes resources are allowed to be deployed
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace         # allow creating namespaces
+
+  namespaceResourceWhitelist:
+    - group: apps
+      kind: Deployment
+    - group: ''
+      kind: Service
+    - group: ''
+      kind: ConfigMap
+    - group: ''
+      kind: Secret
+    - group: argoproj.io
+      kind: Application       # needed so parent app can create child apps
+
+  # Prevent accidental orphaned resources when app is deleted
+  orphanedResources:
+    warn: true

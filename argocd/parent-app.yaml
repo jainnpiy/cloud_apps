@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: parent-app
+  namespace: argocd
+spec:
+  project: customers-project    # tied to our AppProject
+
+  source:
+    repoURL: https://github.com/jainnpiy/cloud_apps
+    targetRevision: HEAD
+    path: argocd                # watches the entire argocd/ folder
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true               # removes deleted customer apps automatically
+      selfHeal: true

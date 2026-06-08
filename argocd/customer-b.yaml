@@ -4,7 +4,7 @@ metadata:
   name: react-demo-cust-2
   namespace: argocd
 spec:
-  project: default
+  project: customers-project
   source:
     repoURL: https://github.com/jainnpiy/cloud_apps
     targetRevision: HEAD
