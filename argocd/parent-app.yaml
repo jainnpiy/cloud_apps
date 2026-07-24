@@ -4,7 +4,7 @@ metadata:
   name: parent-app
   namespace: argocd
 spec:
-  project: customers-project    # tied to our AppProject
+  project: default              # must be default to avoid chicken-and-egg problem
 
   source:
     repoURL: https://github.com/jainnpiy/cloud_apps

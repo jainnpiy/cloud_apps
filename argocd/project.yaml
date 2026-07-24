@@ -27,6 +27,10 @@ spec:
   clusterResourceWhitelist:
     - group: ''
       kind: Namespace         # allow creating namespaces
+    - group: argoproj.io
+      kind: AppProject        # allow managing AppProjects
+    - group: argoproj.io
+      kind: Application       # allow managing Applications
 
   namespaceResourceWhitelist:
     - group: apps
